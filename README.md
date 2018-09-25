@@ -3,11 +3,7 @@ Instagram Media (Video, Image) sharing module (Only for Android, forked from raj
 
 ## Installation
 
-Add to your package.json
-```"rn-instagram-share": "https://github.com/lars-apostle/rn-instagram-share.git",
-
 **Now link it using react-native tool**
-
 ```react-native link```
 
 ## Importing
