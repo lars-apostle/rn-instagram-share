@@ -26,6 +26,6 @@ You can share Image/Video
 
 ```js
 var InstagramShare = require("rn-instagram-share");
-InstagramShare.share("video", "/path/to/file/my_video.mp4");
+InstagramShare.share("video", "video-url");
 ```
 
