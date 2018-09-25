@@ -7,6 +7,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.Promise;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -44,6 +45,10 @@ public class RNInstagramShareModule extends ReactContextBaseJavaModule {
     @Override
     public String getName() {
         return "InstagramShare";
+    }
+
+    public String instagramPackageName() {
+        return "com.instagram.android";
     }
 
     public Uri getVideoFromUrl(String src) {
@@ -110,7 +115,7 @@ public class RNInstagramShareModule extends ReactContextBaseJavaModule {
     private void share(String type, String mediaPath)
     {
         Intent share = new Intent(Intent.ACTION_SEND);
-        share.setPackage("com.instagram.android");
+        share.setPackage(instagramPackageName());
 
         if(type.equals("image")) {
             share.setType("image/*");
@@ -124,5 +129,18 @@ public class RNInstagramShareModule extends ReactContextBaseJavaModule {
 
         share.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         reactContext.startActivity(share);
+    }
+
+    @ReactMethod
+    public void canShare(final Promise promise)
+    {
+        PackageManager pm = this.reactContext.getPackageManager();
+
+        try {
+            pm.getPackageInfo(instagramPackageName(), 0);
+            promise.resolve(true);
+        } catch (PackageManager.NameNotFoundException e) {
+            promise.resolve(false);
+        }
     }
 }
