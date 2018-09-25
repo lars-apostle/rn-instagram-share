@@ -16,11 +16,11 @@ var InstagramShare = require("rn-instagram-share");
 ```
 
 
-## share(Type, FilePath)
+## share(Type, mediaUrl)
 You can share Image/Video
 
-**Type**: **"video/\*"** for all video formats & **"image/\*"** for all image formats.
-**FilePath**: Absoulte path of the media file stored in your phone.
+**Type**: **"video"** for video & **"image"** for all images.
+**mediaUrl**: The URL of the location of the media file.
 
 ### example:
 
