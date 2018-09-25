@@ -25,7 +25,7 @@ You can share Image/Video
 ### example:
 
 ```js
-var InstagramShare = require("rn-instagram-share");
+import InstagramShare from "rn-instagram-share";
 InstagramShare.share("video", "video-url");
 ```
 
