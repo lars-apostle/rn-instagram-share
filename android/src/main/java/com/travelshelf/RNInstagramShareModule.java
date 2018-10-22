@@ -16,7 +16,9 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 import android.net.Uri;
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.ComponentName;
 import android.support.v4.content.FileProvider;
 import android.provider.MediaStore;
@@ -29,6 +31,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -127,8 +130,19 @@ public class RNInstagramShareModule extends ReactContextBaseJavaModule {
             share.putExtra(Intent.EXTRA_STREAM, getVideoFromUrl(mediaPath));
         }
 
-        share.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        reactContext.startActivity(share);
+        PackageManager pm = this.reactContext.getPackageManager();
+        List<ResolveInfo> activityList = pm.queryIntentActivities(share, 0);
+        for (final ResolveInfo app : activityList) {
+            if ((app.activityInfo.name).contains("com.instagram.share.handleractivity.ShareHandlerActivity")) {
+                final ActivityInfo activity = app.activityInfo;
+                final ComponentName name = new ComponentName(activity.applicationInfo.packageName, activity.name);
+                share.addCategory(Intent.CATEGORY_LAUNCHER);
+                share.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                share.setComponent(name);
+                reactContext.startActivity(share);
+                break;
+            }
+        }
     }
 
     @ReactMethod
