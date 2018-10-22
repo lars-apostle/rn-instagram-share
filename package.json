@@ -1,6 +1,6 @@
 {
   "name": "rn-instagram-share",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A library that serves Instagram Share functionality (only for Android. iOS support would be launched soon)",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rajatb94/rn-instagram-share.git"
+    "url": "git+https://github.com/lars-apostle/rn-instagram-share.git"
   },
   "peerDependencies": {
     "react-native": "^0.41.2"
@@ -25,10 +25,10 @@
     "sharing",
     "instagram media sharing"
   ],
-  "author": "Rajat Bhardwaj",
+  "author": "Lars Hunze",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rajatb94/rn-instagram-share/issues"
+    "url": "https://github.com/lars-apostle/rn-instagram-share/issues"
   },
-  "homepage": "https://github.com/rajatb94/rn-instagram-share#readme"
+  "homepage": "https://github.com/lars-apostle/rn-instagram-share#readme"
 }
